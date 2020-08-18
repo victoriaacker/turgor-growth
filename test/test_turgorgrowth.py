@@ -1,4 +1,3 @@
-# -*- coding: latin-1 -*-
 """
     test_turgorgrowth
     ~~~~~~~~~~~~
@@ -57,7 +56,7 @@ def force_inputs(t, population, elements_data_grouped, hiddenzones_data_grouped)
                         element.__dict__.update(element_data_to_use)
 
 
-def test_simulation_run():
+def test_simulation_run(overwrite_desired_data=False):
     """Test the run of a simulation, without interpolation of the forcings."""
 
     TEST_DIR_PATH = 'simulation_run'
@@ -78,7 +77,7 @@ def test_simulation_run():
 
     # Simulation parameters
     START_TIME = 0
-    SIMULATION_LENGTH = 100
+    SIMULATION_LENGTH = 50
     TIME_STEP = 1
 
     time_step_seconds = TIME_STEP * HOUR_TO_SECOND_CONVERSION_FACTOR
@@ -120,6 +119,7 @@ def test_simulation_run():
     for t in time_grid:
 
         if t > 0:
+            print(t)
             # Run the model of CN exchanges ; the population is internally updated by the model
             simulation_.run()
 
@@ -149,8 +149,8 @@ def test_simulation_run():
         outputs_df = pd.concat(outputs_df_list, ignore_index=True)
         outputs_df = outputs_df.loc[:, state_variables_names]  # compare only the values of the compartments
         turgorgrowth_tools.compare_actual_to_desired(OUTPUTS_DIRPATH, outputs_df, desired_outputs_filename,
-                                                     actual_outputs_filename, precision=PRECISION)
+                                                     actual_outputs_filename, precision=PRECISION, overwrite_desired_data=overwrite_desired_data)
 
 
 if __name__ == '__main__':
-    test_simulation_run()
+    test_simulation_run(overwrite_desired_data=False)
