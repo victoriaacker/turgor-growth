@@ -65,13 +65,18 @@ def test_simulation_run(overwrite_desired_data=False):
     INPUTS_DIRPATH = os.path.join(TEST_DIR_PATH, 'inputs')
     HIDDENZONES_INITIAL_STATE_FILENAME = 'hiddenzones_initial_state.csv'
     ELEMENTS_INITIAL_STATE_FILENAME = 'elements_initial_state.csv'
+    ORGANS_INITIAL_STATE_FILENAME = 'organs_initial_state.csv'
     ELEMENTS_FORCINGS_FILENAME = 'elements_forcings.csv'
     HIDDENZONES_FORCINGS_FILENAME = 'hiddenzones_forcings.csv'
 
     # Outputs of the test
     OUTPUTS_DIRPATH = os.path.join(TEST_DIR_PATH, 'outputs')
+    DESIRED_AXES_OUTPUTS_FILENAME = 'desired_axes_outputs.csv'
+    DESIRED_ORGANS_OUTPUTS_FILENAME = 'desired_organs_outputs.csv'
     DESIRED_HIDDENZONES_OUTPUTS_FILENAME = 'desired_hiddenzones_outputs.csv'
     DESIRED_ELEMENTS_OUTPUTS_FILENAME = 'desired_elements_outputs.csv'
+    ACTUAL_AXES_OUTPUTS_FILENAME = 'actual_axes_outputs.csv'
+    ACTUAL_ORGANS_OUTPUTS_FILENAME = 'actual_organs_outputs.csv'
     ACTUAL_HIDDENZONES_OUTPUTS_FILENAME = 'actual_hiddenzones_outputs.csv'
     ACTUAL_ELEMENTS_OUTPUTS_FILENAME = 'actual_elements_outputs.csv'
 
@@ -84,12 +89,13 @@ def test_simulation_run(overwrite_desired_data=False):
 
     # Read the inputs from CSV files and create inputs dataframes
     inputs_dataframes = {}
-    for inputs_filename in (HIDDENZONES_INITIAL_STATE_FILENAME, ELEMENTS_INITIAL_STATE_FILENAME):
+    for inputs_filename in (HIDDENZONES_INITIAL_STATE_FILENAME, ELEMENTS_INITIAL_STATE_FILENAME,ORGANS_INITIAL_STATE_FILENAME):
         inputs_dataframes[inputs_filename] = pd.read_csv(os.path.join(INPUTS_DIRPATH, inputs_filename))
 
     # Convert the inputs dataframes to a population of plants and a dictionary of soils
     population, mapping_topology = turgorgrowth_converter.from_dataframes(inputs_dataframes[HIDDENZONES_INITIAL_STATE_FILENAME],
-                                                                          inputs_dataframes[ELEMENTS_INITIAL_STATE_FILENAME])
+                                                                          inputs_dataframes[ELEMENTS_INITIAL_STATE_FILENAME],
+                                                                          inputs_dataframes[ORGANS_INITIAL_STATE_FILENAME])
 
     # Create the simulation
     simulation_ = turgorgrowth_simulation.Simulation(delta_t=time_step_seconds)
@@ -115,6 +121,8 @@ def test_simulation_run(overwrite_desired_data=False):
     # Create empty lists of dataframes to store the outputs at each step of the simulation
     hiddenzones_outputs_df_list = []
     elements_outputs_df_list = []
+    organs_outputs_df_list = []
+    axes_outputs_df_list = []
 
     for t in time_grid:
 
@@ -124,10 +132,10 @@ def test_simulation_run(overwrite_desired_data=False):
             simulation_.run()
 
         # Convert the model outputs to dataframes
-        hiddenzones_outputs_df, elements_outputs_df = turgorgrowth_converter.to_dataframes(simulation_.population)
+        hiddenzones_outputs_df, elements_outputs_df, organs_outputs_df, hytomer_output_df, plant_output_df, axes_outputs_df = turgorgrowth_converter.to_dataframes(simulation_.population)
 
         # Append the outputs dataframes at current t to the global lists of dataframes
-        for df, list_ in ((hiddenzones_outputs_df, hiddenzones_outputs_df_list), (elements_outputs_df, elements_outputs_df_list)):
+        for df, list_ in ((axes_outputs_df, axes_outputs_df_list), (hiddenzones_outputs_df, hiddenzones_outputs_df_list), (elements_outputs_df, elements_outputs_df_list), (organs_outputs_df, organs_outputs_df_list)):
             df.insert(0, 't', t)
             list_.append(df)
 
@@ -145,12 +153,15 @@ def test_simulation_run(overwrite_desired_data=False):
             in ((hiddenzones_outputs_df_list, DESIRED_HIDDENZONES_OUTPUTS_FILENAME, ACTUAL_HIDDENZONES_OUTPUTS_FILENAME,
                  turgorgrowth_simulation.Simulation.HIDDENZONE_T_INDEXES + turgorgrowth_simulation.Simulation.HIDDENZONE_STATE),
                 (elements_outputs_df_list, DESIRED_ELEMENTS_OUTPUTS_FILENAME, ACTUAL_ELEMENTS_OUTPUTS_FILENAME,
-                 turgorgrowth_simulation.Simulation.ELEMENTS_T_INDEXES + turgorgrowth_simulation.Simulation.ELEMENTS_STATE)):
+                 turgorgrowth_simulation.Simulation.ELEMENTS_T_INDEXES + turgorgrowth_simulation.Simulation.ELEMENTS_STATE),
+                (axes_outputs_df_list, DESIRED_AXES_OUTPUTS_FILENAME, ACTUAL_AXES_OUTPUTS_FILENAME,
+                 turgorgrowth_simulation.Simulation.AXES_T_INDEXES + turgorgrowth_simulation.Simulation.AXES_STATE),
+                (organs_outputs_df_list, DESIRED_ORGANS_OUTPUTS_FILENAME, ACTUAL_ORGANS_OUTPUTS_FILENAME, turgorgrowth_simulation.Simulation.ORGANS_T_INDEXES + turgorgrowth_simulation.Simulation.ORGANS_STATE)
+                ):
         outputs_df = pd.concat(outputs_df_list, ignore_index=True)
         outputs_df = outputs_df.loc[:, state_variables_names]  # compare only the values of the compartments
         turgorgrowth_tools.compare_actual_to_desired(OUTPUTS_DIRPATH, outputs_df, desired_outputs_filename,
                                                      actual_outputs_filename, precision=PRECISION, overwrite_desired_data=overwrite_desired_data)
-
 
 if __name__ == '__main__':
     test_simulation_run(overwrite_desired_data=False)
