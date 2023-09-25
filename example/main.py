@@ -41,17 +41,18 @@ ORGANS_INITIAL_STATE_FILENAME = 'organs_initial_state.csv'
 SOIL_INITIAL_STATE_FILENAME = 'soil_initial_state.csv'
 
 # Name of the CSV files which contain the photosynthesis and senescence forcings
-##ELEMENTS_FORCINGS_FILENAME = 'elements_forcings-t=100-Ete.csv'
-##ELEMENTS_FORCINGS_FILENAME = 'elements_forcings-t=999-Ete.csv'
-ELEMENTS_FORCINGS_FILENAME = 'elements_forcings-t=999-Ete - Copie.csv'
-##ELEMENTS_FORCINGS_FILENAME = 'elements_forcings.csv'
-##HIDDENZONES_FORCINGS_FILENAME = 'hiddenzones_forcings.csv'
-HIDDENZONES_FORCINGS_FILENAME = 'hiddenzones_forcings - init.csv'
+# ELEMENTS_FORCINGS_FILENAME = 'elements_forcings-t=999-Ete - Copie.csv'
+ELEMENTS_FORCINGS_FILENAME = 'elements_forcings-t=999-Ete - Po.csv'
+# HIDDENZONES_FORCINGS_FILENAME = 'hiddenzones_forcings - init.csv'
+HIDDENZONES_FORCINGS_FILENAME = 'hiddenzones_forcings - Po.csv'
 ORGANS_FORCINGS_FILENAME = 'organs_forcings.csv'
 SOIL_FORCINGS_FILENAME = 'soil_forcings.csv'
+# SOIL_FORCINGS_FILENAME = 'soil_forcings - Ete.csv'
+# SOIL_FORCINGS_FILENAME = 'soil_forcings - Late_Drought.csv'
 
 # Name of the CSV files which contains the meteo data
 METEO_INPUTS_FILENAME = 'soil_forcings.csv'
+# METEO_INPUTS_FILENAME = 'soil_forcings - Ete.csv'
 
 # ---------- OUTPUTS CONFIGURATION ----------
 
@@ -88,7 +89,7 @@ GRAPHS_DIRPATH = 'graphs'
 START_TIME = 0
 
 # Length of the simulation (in hours)
-SIMULATION_LENGTH = 200
+SIMULATION_LENGTH = 50
 
 # Time step of the simulation (in hours)
 TIME_STEP = 1
@@ -330,6 +331,11 @@ if RUN_POSTPROCESSING:
     print('Write the postprocessing to CSV files... DONE!')
 
 if GENERATE_GRAPHS:
+    # Delete previous graphs
+    graphs = os.listdir(GRAPHS_DIRPATH)
+    for graph in graphs:
+        if graph.endswith(".PNG"):
+            os.remove(os.path.join(GRAPHS_DIRPATH, graph))
 
     if not RUN_POSTPROCESSING:
 
