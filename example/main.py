@@ -34,7 +34,8 @@ INPUTS_DIRPATH = 'inputs_simpleplant'
 
 
 # Name of the CSV files which describe the initial state of the system
-HIDDENZONES_INITIAL_STATE_FILENAME = 'hiddenzones_initial_state.csv'
+# HIDDENZONES_INITIAL_STATE_FILENAME = 'hiddenzones_initial_state.csv'
+HIDDENZONES_INITIAL_STATE_FILENAME = 'hiddenzones_initial_state_cnwheat.csv'
 # ELEMENTS_INITIAL_STATE_FILENAME = 'elements_initial_state-growth.csv'
 ELEMENTS_INITIAL_STATE_FILENAME = 'elements_initial_state-growth - Copie.csv'
 ORGANS_INITIAL_STATE_FILENAME = 'organs_initial_state.csv'
@@ -42,9 +43,10 @@ SOIL_INITIAL_STATE_FILENAME = 'soil_initial_state.csv'
 
 # Name of the CSV files which contain the photosynthesis and senescence forcings
 # ELEMENTS_FORCINGS_FILENAME = 'elements_forcings-t=999-Ete - Copie.csv'
-ELEMENTS_FORCINGS_FILENAME = 'elements_forcings-t=999-Ete - Po.csv'
-# HIDDENZONES_FORCINGS_FILENAME = 'hiddenzones_forcings - init.csv'
-HIDDENZONES_FORCINGS_FILENAME = 'hiddenzones_forcings - Po.csv'
+# ELEMENTS_FORCINGS_FILENAME = 'elements_forcings-t=999-Ete - Po.csv'
+ELEMENTS_FORCINGS_FILENAME = 'elements_forcings_cnwheat.csv'
+HIDDENZONES_FORCINGS_FILENAME = 'hiddenzones_forcings - init.csv'
+# HIDDENZONES_FORCINGS_FILENAME = 'hiddenzones_forcings - Po.csv'
 ORGANS_FORCINGS_FILENAME = 'organs_forcings.csv'
 SOIL_FORCINGS_FILENAME = 'soil_forcings.csv'
 # SOIL_FORCINGS_FILENAME = 'soil_forcings - Ete.csv'
@@ -89,7 +91,7 @@ GRAPHS_DIRPATH = 'graphs'
 START_TIME = 0
 
 # Length of the simulation (in hours)
-SIMULATION_LENGTH = 50
+SIMULATION_LENGTH = 100
 
 # Time step of the simulation (in hours)
 TIME_STEP = 1
