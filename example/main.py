@@ -34,27 +34,27 @@ INPUTS_DIRPATH = 'inputs_simpleplant'
 
 
 # Name of the CSV files which describe the initial state of the system
-# HIDDENZONES_INITIAL_STATE_FILENAME = 'hiddenzones_initial_state.csv'
-HIDDENZONES_INITIAL_STATE_FILENAME = 'hiddenzones_initial_state_cnwheat.csv'
+HIDDENZONES_INITIAL_STATE_FILENAME = 'hiddenzones_initial_state.csv'
+# HIDDENZONES_INITIAL_STATE_FILENAME = 'hiddenzones_initial_state_cnwheat.csv'
 # ELEMENTS_INITIAL_STATE_FILENAME = 'elements_initial_state-growth.csv'
-ELEMENTS_INITIAL_STATE_FILENAME = 'elements_initial_state-growth - Copie.csv'
+# ELEMENTS_INITIAL_STATE_FILENAME = 'elements_initial_state-growth - Copie.csv'
+ELEMENTS_INITIAL_STATE_FILENAME = 'elements_initial_state.csv'
 ORGANS_INITIAL_STATE_FILENAME = 'organs_initial_state.csv'
 SOIL_INITIAL_STATE_FILENAME = 'soil_initial_state.csv'
 
 # Name of the CSV files which contain the photosynthesis and senescence forcings
 # ELEMENTS_FORCINGS_FILENAME = 'elements_forcings-t=999-Ete - Copie.csv'
 # ELEMENTS_FORCINGS_FILENAME = 'elements_forcings-t=999-Ete - Po.csv'
-ELEMENTS_FORCINGS_FILENAME = 'elements_forcings_cnwheat.csv'
-HIDDENZONES_FORCINGS_FILENAME = 'hiddenzones_forcings - init.csv'
+# ELEMENTS_FORCINGS_FILENAME = 'elements_forcings_cnwheat.csv'
+ELEMENTS_FORCINGS_FILENAME = 'elements_forcings.csv'
+HIDDENZONES_FORCINGS_FILENAME = 'hiddenzones_forcings.csv'
+# HIDDENZONES_FORCINGS_FILENAME = 'hiddenzones_forcings - init.csv'
 # HIDDENZONES_FORCINGS_FILENAME = 'hiddenzones_forcings - Po.csv'
 ORGANS_FORCINGS_FILENAME = 'organs_forcings.csv'
 SOIL_FORCINGS_FILENAME = 'soil_forcings.csv'
-# SOIL_FORCINGS_FILENAME = 'soil_forcings - Ete.csv'
-# SOIL_FORCINGS_FILENAME = 'soil_forcings - Late_Drought.csv'
 
 # Name of the CSV files which contains the meteo data
 METEO_INPUTS_FILENAME = 'soil_forcings.csv'
-# METEO_INPUTS_FILENAME = 'soil_forcings - Ete.csv'
 
 # ---------- OUTPUTS CONFIGURATION ----------
 
