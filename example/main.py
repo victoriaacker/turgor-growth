@@ -46,7 +46,8 @@ SOIL_INITIAL_STATE_FILENAME = 'soil_initial_state.csv'
 # ELEMENTS_FORCINGS_FILENAME = 'elements_forcings-t=999-Ete - Copie.csv'
 # ELEMENTS_FORCINGS_FILENAME = 'elements_forcings-t=999-Ete - Po.csv'
 # ELEMENTS_FORCINGS_FILENAME = 'elements_forcings_cnwheat.csv'
-ELEMENTS_FORCINGS_FILENAME = 'elements_forcings.csv'
+ELEMENTS_FORCINGS_FILENAME = 'elements_forcings_sameTr.csv' # Same transpiration rate each day, for all leaves, according to blade 1
+# ELEMENTS_FORCINGS_FILENAME = 'elements_forcings.csv'
 HIDDENZONES_FORCINGS_FILENAME = 'hiddenzones_forcings.csv'
 # HIDDENZONES_FORCINGS_FILENAME = 'hiddenzones_forcings - init.csv'
 # HIDDENZONES_FORCINGS_FILENAME = 'hiddenzones_forcings - Po.csv'
@@ -91,7 +92,7 @@ GRAPHS_DIRPATH = 'graphs'
 START_TIME = 0
 
 # Length of the simulation (in hours)
-SIMULATION_LENGTH = 850
+SIMULATION_LENGTH = 300
 
 # Time step of the simulation (in hours)
 TIME_STEP = 1
