@@ -241,8 +241,8 @@ if RUN_SIMU:
             simulation_.run()
 
         # Convert the model outputs to dataframes
-        ##_, axes_outputs_df, _, organs_outputs_df, hiddenzones_outputs_df, elements_outputs_df, soil_outputs_df = turgorgrowth_converter.to_dataframes(simulation_.population, simulation_.soil)
-        _, axes_outputs_df, _, organs_outputs_df, hiddenzones_outputs_df, elements_outputs_df= turgorgrowth_converter.to_dataframes(simulation_.population)
+        # _, axes_outputs_df, _, organs_outputs_df, hiddenzones_outputs_df, elements_outputs_df, soil_outputs_df = turgorgrowth_converter.to_dataframes(simulation_.population, simulation_.soil)
+        _, axes_outputs_df, _, organs_outputs_df, hiddenzones_outputs_df, elements_outputs_df = turgorgrowth_converter.to_dataframes(simulation_.population)
 
         # Append the outputs dataframes at current t to the global lists of dataframes
         for df, list_ in ((axes_outputs_df, axes_outputs_df_list),(hiddenzones_outputs_df, hiddenzones_outputs_df_list), (elements_outputs_df, elements_outputs_df_list), (organs_outputs_df, organs_outputs_df_list)):
