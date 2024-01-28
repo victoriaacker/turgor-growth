@@ -92,7 +92,7 @@ GRAPHS_DIRPATH = 'graphs'
 START_TIME = 0
 
 # Length of the simulation (in hours)
-SIMULATION_LENGTH = 300
+SIMULATION_LENGTH = 600
 
 # Time step of the simulation (in hours)
 TIME_STEP = 1
