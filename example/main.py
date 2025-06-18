@@ -29,28 +29,18 @@ from turgorgrowth import simulation as turgorgrowth_simulation, converter as tur
 # ---------- INPUTS CONFIGURATION ----------
 
 # Path of the directory which contains the inputs of the model
-INPUTS_DIRPATH = 'inputs_simpleplant'
-##INPUTS_DIRPATH = 'inputs'
-
+INPUTS_DIRPATH = 'inputs'
 
 # Name of the CSV files which describe the initial state of the system
 HIDDENZONES_INITIAL_STATE_FILENAME = 'hiddenzones_initial_state.csv'
-# HIDDENZONES_INITIAL_STATE_FILENAME = 'hiddenzones_initial_state_cnwheat.csv'
-# ELEMENTS_INITIAL_STATE_FILENAME = 'elements_initial_state-growth.csv'
-# ELEMENTS_INITIAL_STATE_FILENAME = 'elements_initial_state-growth - Copie.csv'
 ELEMENTS_INITIAL_STATE_FILENAME = 'elements_initial_state.csv'
 ORGANS_INITIAL_STATE_FILENAME = 'organs_initial_state.csv'
 SOIL_INITIAL_STATE_FILENAME = 'soil_initial_state.csv'
 
 # Name of the CSV files which contain the photosynthesis and senescence forcings
-# ELEMENTS_FORCINGS_FILENAME = 'elements_forcings-t=999-Ete - Copie.csv'
-# ELEMENTS_FORCINGS_FILENAME = 'elements_forcings-t=999-Ete - Po.csv'
-# ELEMENTS_FORCINGS_FILENAME = 'elements_forcings_cnwheat.csv'
 ELEMENTS_FORCINGS_FILENAME = 'elements_forcings_sameTr.csv' # Same transpiration rate each day, for all leaves, according to blade 1
 # ELEMENTS_FORCINGS_FILENAME = 'elements_forcings.csv'
 HIDDENZONES_FORCINGS_FILENAME = 'hiddenzones_forcings.csv'
-# HIDDENZONES_FORCINGS_FILENAME = 'hiddenzones_forcings - init.csv'
-# HIDDENZONES_FORCINGS_FILENAME = 'hiddenzones_forcings - Po.csv'
 ORGANS_FORCINGS_FILENAME = 'organs_forcings.csv'
 SOIL_FORCINGS_FILENAME = 'soil_forcings.csv'
 
